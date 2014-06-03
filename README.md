@@ -1,5 +1,5 @@
 zziplib
 =======
 
-cmake zziplib clone version 0.13.59
+cmake zziplib clone version 0.13.62
 

@@ -1,6 +1,6 @@
 <html><head><title>zziplib Library Functions</title>
 </head><body>
-<h2>zziplib Library Functions</h2><p>Version 0.13.59</p><p><big><b><code>#include &lt;zzip/lib.h&gt;</code></b></big></p><table width="100%"><tr><td valign="top"><code><b><code><a href="#zzip_error">zzip_error</a></code></b>(ZZIP_DIR * dir)
+<h2>zziplib Library Functions</h2><p>Version 0.13.62</p><p><big><b><code>#include &lt;zzip/lib.h&gt;</code></b></big></p><table width="100%"><tr><td valign="top"><code><b><code><a href="#zzip_error">zzip_error</a></code></b>(ZZIP_DIR * dir)
  : int
 </code></td></tr><tr><td valign="top"><code><b><code><a href="#zzip_seterror">zzip_seterror</a></code></b>(ZZIP_DIR * dir, int errcode)  : void
 </code></td></tr><tr><td valign="top"><code><b><code><a href="#zzip_open">zzip_open</a></code></b>(zzip_char_t * filename, int o_flags)
@@ -151,6 +151,9 @@
 </p><p>
   The <code>zzip_open_ext_io</code> function returns a new zzip-handle (use <code><a href="#zzip_close">zzip_close</a></code> to return
   it). On error the <code>zzip_open_ext_io</code> function will return null setting <a href="http://www.opengroup.org/onlinepubs/000095399/functions/errno.html"><code>errno(3)</code></a>.
+</p><p>
+  If any ext_io handlers were used then the referenced structure
+  should be static as the allocated ZZIP_FILE does not copy them.
 </p>
 </td></tr><tr><td valign="top"><p>
   The <code>zzip_open_shared_io</code> function takes an extra stream argument - if a handle has been
@@ -246,6 +249,8 @@
 </code></td></tr></table></dt><dd><table width="100%"><tr><td valign="top"><table border="0" width="100%" cellpadding="0" cellspacing="0"><td> &nbsp;<em>...</em> </td><td align="right"> <em><small>zzip/zip.c</small></em></td></table>
 </td></tr><tr><td valign="top"><p>  the <code>zzip_dir_open_ext_io</code> function uses explicit ext and io instead of the internal
   defaults. Setting these to zero is equivalent to <code><a href="#zzip_dir_open">zzip_dir_open</a></code>
+  Note that the referenced ext_io plugin handlers structure must be 
+  static as it is not copied to the returned ZZIP_DIR structure.
 </p>
 </td></tr><tr><td valign="top"><p>  fills the dirent-argument with the values and
   increments the read-pointer of the dir-argument.
@@ -258,7 +263,8 @@
  : zzip_plugin_io_t
 </code></td></tr></table></dt><dd><table width="100%"><tr><td valign="top"><table border="0" width="100%" cellpadding="0" cellspacing="0"><td> &nbsp;<em>...</em> </td><td align="right"> <em><small>zzip/plugin.c</small></em></td></table>
 </td></tr><tr><td valign="top"><p>  The <code>zzip_get_default_io</code> function returns a zzip_plugin_io_t handle to static defaults
-  wrapping the posix io file functions for actual file access.
+  wrapping the posix io file functions for actual file access. The
+  returned structure is shared by all threads in the system.
 </p>
 </td></tr></table></dd><dt><table width="100%"></table></dt><dd><table width="100%"></table></dd><dt><table width="100%"></table></dt><dd><table width="100%"></table></dd><dt><table width="100%"><tr><td valign="top"><code><b><a name="zzip_rewinddir">zzip_rewinddir</a></b>(ZZIP_DIR * dir)
  : void

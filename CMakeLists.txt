@@ -30,14 +30,15 @@ install(FILES "zzip/write.h" DESTINATION include/zzip)
 install(FILES "zzip/zzip.h" DESTINATION include/zzip)
 install(FILES "zzip/zzip32.h" DESTINATION include/zzip)
 install(FILES "zzipwrap/wrap.h" DESTINATION include/zzip)
+
 # work around
-install(FILES "/usr/include/zzip.h" DESTINATION include)
-install(FILES "/usr/include/zzip-io.h" DESTINATION include)
-install(FILES "/usr/include/zziplib.h" DESTINATION include)
+#install(FILES "/usr/include/zzip.h" DESTINATION include)
+#install(FILES "/usr/include/zzip-io.h" DESTINATION include)
+#install(FILES "/usr/include/zziplib.h" DESTINATION include)
+install(FILES "zzip/zzip.h" DESTINATION include)
+install(FILES "zzip/zziplib.h" DESTINATION include)
+install(FILES "zzip/zzip-io.h" DESTINATION include)
 
 
 install(FILES "../cmake/FindZZIP.cmake" DESTINATION lib)
-#install(FILES "zzip/zzip.h" DESTINATION include)
-#install(FILES "zzip/zziplib.h" DESTINATION include)
-#install(FILES "zzip/zzip-io.h" DESTINATION include)
 
