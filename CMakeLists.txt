@@ -1,0 +1,43 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+PROJECT(zzip)
+
+#find_package (zlib REQUIRED) 
+
+INCLUDE_DIRECTORIES(.)
+FILE(GLOB zzip_files zzip/*.c)
+FILE(GLOB zzipwrap_files zzipwrap/*.c)
+FILE(GLOB zzip_headers zzip/*.h)
+
+ADD_LIBRARY (zzip ${zzip_files} ${zzipwrap_files})
+install(TARGETS zzip ARCHIVE DESTINATION lib)
+
+install(FILES "zzip/autoconf.h" DESTINATION include/zzip)
+install(FILES "zzip/conf.h" DESTINATION include/zzip)
+install(FILES "zzip/_config.h" DESTINATION include/zzip)
+install(FILES "zzip/fetch.h" DESTINATION include/zzip)
+install(FILES "zzip/file.h" DESTINATION include/zzip)
+install(FILES "zzip/format.h" DESTINATION include/zzip)
+install(FILES "zzip/fseeko.h" DESTINATION include/zzip)
+install(FILES "zzip/info.h" DESTINATION include/zzip)
+install(FILES "zzip/lib.h" DESTINATION include/zzip)
+install(FILES "zzip/memdisk.h" DESTINATION include/zzip)
+install(FILES "zzip/mmapped.h" DESTINATION include/zzip)
+install(FILES "zzip/_msvc.h" DESTINATION include/zzip)
+install(FILES "zzip/plugin.h" DESTINATION include/zzip)
+install(FILES "zzip/stdint.h" DESTINATION include/zzip)
+install(FILES "zzip/types.h" DESTINATION include/zzip)
+install(FILES "zzip/write.h" DESTINATION include/zzip)
+install(FILES "zzip/zzip.h" DESTINATION include/zzip)
+install(FILES "zzip/zzip32.h" DESTINATION include/zzip)
+install(FILES "zzipwrap/wrap.h" DESTINATION include/zzip)
+# work around
+install(FILES "/usr/include/zzip.h" DESTINATION include)
+install(FILES "/usr/include/zzip-io.h" DESTINATION include)
+install(FILES "/usr/include/zziplib.h" DESTINATION include)
+
+
+install(FILES "../cmake/FindZZIP.cmake" DESTINATION lib)
+#install(FILES "zzip/zzip.h" DESTINATION include)
+#install(FILES "zzip/zziplib.h" DESTINATION include)
+#install(FILES "zzip/zzip-io.h" DESTINATION include)
+
