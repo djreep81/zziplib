@@ -20,7 +20,6 @@ if (ZZIP_FOUND)
         set (ZZIP_LIBRARIES_DBG ${ZZIP_LIB_DBG})
     endif()
 else()
-  unset 
     set (ZZIP_INCLUDE_DIR)
     set (ZZIP_LIBRARIES)
     set (ZZIP_LIBRARIES_DBG)
